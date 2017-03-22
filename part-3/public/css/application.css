@@ -86,3 +86,7 @@ ul.review {
   border-right: 1px solid;
 }
 
+.edit .delete {
+  text-decoration: underline;
+}
+

@@ -12,6 +12,11 @@ get '/potlucks/:id' do
   erb :'potlucks/show'
 end
 
+get '/potlucks/:id/edit' do
+  @potluck = Potluck.find_by(id: params[:id])
+  erb :"potlucks/edit"
+end
+
 post '/potlucks' do
   @potluck = current_user.organized_potlucks.new(params[:potluck])
   if @potluck.save
@@ -21,3 +26,24 @@ post '/potlucks' do
     erb :'/potlucks/new'
   end
 end
+
+put "/potlucks/:id" do
+  @potluck = Potluck.find_by(id: params[:id])
+  if @potluck && @potluck.organizer_id == current_user.id
+    @potluck.assign_attributes(params[:potluck])
+    if @potluck.save
+      redirect "/potlucks/#{@potluck.id}"
+    else
+      @errors = @potluck.errors.full_messages
+      erb :"potlucks/edit"
+    end
+  else
+    redirect "/"
+  end
+end
+
+# delete "/restaurants/:id" do
+#   @restaurant = Restaurant.find_by(id: params[:id])
+#   @restaurant.destroy
+#   redirect "/"
+# end

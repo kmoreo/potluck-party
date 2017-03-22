@@ -8,13 +8,13 @@
 
   <form action="/potlucks" method="post">
     Name:<br>
-    <input type="text" name="potluck[name]">
+    <input type="text" name="potluck[name]" value="<%= @potluck.try(:name) %>">
     <br><br>
     Location:<br>
-    <input type="text" name="potluck[location]">
+    <input type="text" name="potluck[location]" value="<%= @potluck.try(:location) %>">
     <br><br>
     Starts At:<br>
-    <input type="datetime-local" name="potluck[start_time]">
+    <input type="datetime-local" name="potluck[start_time]" value="<%= @potluck.try(:start_time) %>">
     <br><br>
     <input type="submit" value="Save Potluck">
   </form> 
