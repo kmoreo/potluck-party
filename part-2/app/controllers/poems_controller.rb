@@ -6,13 +6,31 @@ end
 post "/poems" do
   @poem = Poem.new(params[:poem])
 
-  if @poem.save
-      redirect "/poems/#{@poem.id}"
+  if request.xhr?
+    if @poem.save
+      erb :'/poems/_poem', layout: false, locals: {poem: @poem}
+    else
+      status 418
+    end
   else
-    @errors = @poem.errors.values.flatten
-    erb :"/poems/new"
+    if @poem.save
+      redirect "poems/#{@poem.id}"
+    else
+      @errors = @poem.errors.values.flatten
+      erb :"/poems/new"
+    end
   end
 end
+
+
+
+  # if @poem.save
+  #     redirect "/poems/#{@poem.id}"
+  # else
+  #   @errors = @poem.errors.values.flatten
+  #   erb :"/poems/new"
+  # end
+# end
 
 put "/poems/:id/applauses" do
   poem = Poem.find(params[:id])
