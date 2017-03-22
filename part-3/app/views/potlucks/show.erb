@@ -2,7 +2,7 @@
 
   <% if @errors %>
     <% @errors.each do |error| %>
-      <p class="error"><%= error %></p>
+      <span class="em-underline"><%= error %></span>
     <% end %>
   <% end %>
 
@@ -23,4 +23,19 @@
       </form>
     <% end %>
   <% end %>
+
+  <% if current_user && current_user.id != @potluck.organizer.id%>
+    <div>
+      <h3>Attend This Potluck:</h3>
+      <form action="/potlucks/<%= @potluck.id %>/attendings" method="post">
+        What dish will you bring?<br>
+        <input type="text" name="attending[dish]">
+        <br><br>
+        <input type="submit" value="Sign Up">
+      </form> 
+    </div>
+
+
+  <% end %>
+
 </div>

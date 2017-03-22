@@ -1,4 +1,10 @@
 <div class="container">
+
+  <% if @errors %>
+    <% @errors.each do |error| %>
+      <span class="em-underline"><%= error %></span>
+    <% end %>
+  <% end %>
   <h3>Upcoming Potlucks:</h3>
 
   <ul>

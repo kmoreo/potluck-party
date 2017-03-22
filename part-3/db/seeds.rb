@@ -18,26 +18,30 @@ end
 end
 
 event_1 = [
-  {potluck_id: 1, guest_id: 1},
-  {potluck_id: 1, guest_id: 2},
-  {potluck_id: 1, guest_id: 3},
-  {potluck_id: 1, guest_id: 4},
-  {potluck_id: 1, guest_id: 5},
+  {potluck_id: 1, guest_id: 1, dish: Faker::Food.spice + " " + Faker::Food.ingredient},
+  {potluck_id: 1, guest_id: 2, dish: Faker::Food.spice + " " + Faker::Food.ingredient},
+  {potluck_id: 1, guest_id: 3, dish: Faker::Food.spice + " " + Faker::Food.ingredient},
+  {potluck_id: 1, guest_id: 4, dish: Faker::Food.spice + " " + Faker::Food.ingredient},
+  {potluck_id: 1, guest_id: 5, dish: Faker::Food.spice + " " + Faker::Food.ingredient},
 ]
+Attending.create!(event_1)
 
 event_2 = [
-  {potluck_id: 2, guest_id: 6},
-  {potluck_id: 2, guest_id: 7},
-  {potluck_id: 2, guest_id: 8},
-  {potluck_id: 2, guest_id: 9},
-  {potluck_id: 2, guest_id: 10},
+  {potluck_id: 2, guest_id: 6, dish: Faker::Food.spice + " " + Faker::Food.ingredient},
+  {potluck_id: 2, guest_id: 7, dish: Faker::Food.spice + " " + Faker::Food.ingredient},
+  {potluck_id: 2, guest_id: 8, dish: Faker::Food.spice + " " + Faker::Food.ingredient},
+  {potluck_id: 2, guest_id: 9, dish: Faker::Food.spice + " " + Faker::Food.ingredient},
+  {potluck_id: 2, guest_id: 10, dish: Faker::Food.spice + " " + Faker::Food.ingredient},
 ]
-event_3 = [
-  {potluck_id: 3, guest_id: 11},
-  {potluck_id: 3, guest_id: 12},
-  {potluck_id: 3, guest_id: 13},
-  {potluck_id: 3, guest_id: 14},
-  {potluck_id: 3, guest_id: 15},
-]
+Attending.create!(event_2)
 
-Attending.create!([event_1, event_2, event_3])
+event_3 = [
+  {potluck_id: 3, guest_id: 11, dish: Faker::Food.spice + " " + Faker::Food.ingredient},
+  {potluck_id: 3, guest_id: 12, dish: Faker::Food.spice + " " + Faker::Food.ingredient},
+  {potluck_id: 3, guest_id: 13, dish: Faker::Food.spice + " " + Faker::Food.ingredient},
+  {potluck_id: 3, guest_id: 14, dish: Faker::Food.spice + " " + Faker::Food.ingredient},
+  {potluck_id: 3, guest_id: 15, dish: Faker::Food.spice + " " + Faker::Food.ingredient},
+]
+Attending.create!(event_3)
+
+
