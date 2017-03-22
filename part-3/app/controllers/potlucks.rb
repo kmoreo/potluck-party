@@ -1,3 +1,8 @@
+get '/potlucks' do
+  @potlucks = Potluck.all.order(start_time: :ASC)
+  erb :index
+end
+
 get '/potlucks/new' do
  erb :'/potlucks/new'
 end
@@ -8,9 +13,7 @@ get '/potlucks/:id' do
 end
 
 post '/potlucks' do
-  # params[:restaurant][:creator_id] = current_user.id
   @potluck = current_user.organized_potlucks.new(params[:potluck])
-  # @potluck = Potluck.new(params[:potluck])
   if @potluck.save
     redirect "/potlucks/#{@potluck.id}"
   else

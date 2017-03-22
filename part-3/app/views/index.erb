@@ -1,3 +1,12 @@
 <div class="container">
-  <h1>potlucks are cool.</h1>
-</div>
+  <h3>Upcoming Potlucks:</h3>
+
+  <ul>
+    <% @potlucks.each do |potluck| %>
+      <li><a style="text-decoration: underline;" href='/potlucks/<%= potluck.id %>'> <%= potluck.name %></a> 
+      <p><%= event_date(potluck.start_time) %> at <%= potluck.location %></p>
+      </li>
+    <% end %>
+  </ul>
+
+ </div>
