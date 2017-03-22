@@ -15,12 +15,18 @@ gem 'rake'
 gem 'rack', '1.5.2'
 gem 'shotgun'
 
-group :test do
+gem 'bcrypt'
+
+gem 'pry'
+
+gem 'faker', '~>1.7.3'
+
+group :test, :development do
   gem 'shoulda-matchers'
   gem 'rack-test'
   gem 'rspec', '~>3.0'
   gem 'capybara'
   gem 'database_cleaner'
   gem 'factory_girl'
-  gem 'faker'
+  # gem 'faker'
 end

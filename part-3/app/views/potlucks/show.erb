@@ -1,0 +1,9 @@
+<div class="container">
+  <h1><%= @potluck.name %></h1>
+  <ul>
+    <li>Location: <%= @potluck.location %></li>
+    <li>Date: <%= event_date(@potluck.start_time) %></li>
+    <li>Time: <%= event_time(@potluck.start_time)%></li>
+    <li>Host: <%= @potluck.organizer.username %></li>
+  </ul>
+</div>

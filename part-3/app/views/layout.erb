@@ -10,7 +10,10 @@
   <!--
     application.css is where you put your styles
   -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
   <link rel="stylesheet" href="/css/application.css">
+  <!-- <link rel="icon" type="image/png" href="/pizza.png"> -->
 
   <script src="/js/jquery.js"></script>
   <script src="/js/application.js"></script>
@@ -18,6 +21,24 @@
   <title></title>
 </head>
 <body>
+  <% if current_user %>
+    <nav class='navbar'>
+      <a style="float: right;margin-right: 50px;" href="/users/<%= current_user.id %>"><%= current_user.username %></a>
+      <form class="padded" style="display: inline;" method="post" action="/sessions">
+        <input type="hidden" name="_method" value="delete">
+        <button>Logout</button>
+      </form>
+      <a class="padded left-pipe right-pipe" href="/potlucks/new">Host A Potluck</a>
+      <a class="padded" href="/">Home</a>
+    </nav>
+  <% else %>
+    <nav class='navbar'>
+      <a class="padded" href='/users/new'>Register</a>
+      <a class="padded left-pipe right-pipe" href='/sessions/new'>Login</a>
+      <a class="padded" href="/">Home</a>
+     </nav>
+  <% end %>
+  <h1 style="text-align: center;color:navy;">&#x1F32E; Potluck Party  &#x1F32D;</h1>
   <%= yield %>
 </body>
 </html>
