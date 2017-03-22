@@ -10,7 +10,7 @@ post "/poems" do
     if @poem.save
       erb :'/poems/_poem', layout: false, locals: {poem: @poem}
     else
-      status 418
+      @errors = @poem.errors.values.flatten
     end
   else
     if @poem.save
@@ -22,20 +22,15 @@ post "/poems" do
   end
 end
 
-
-
-  # if @poem.save
-  #     redirect "/poems/#{@poem.id}"
-  # else
-  #   @errors = @poem.errors.values.flatten
-  #   erb :"/poems/new"
-  # end
-# end
-
 put "/poems/:id/applauses" do
   poem = Poem.find(params[:id])
   poem.increment!(:applauses)
-  redirect "/poems/#{poem.id}"
+
+  if request.xhr?
+    applause_report(poem)
+  else
+    redirect "/poems/#{poem.id}"
+  end
 end
 
 get "/poems/new" do
