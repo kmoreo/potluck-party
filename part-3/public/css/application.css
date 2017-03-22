@@ -93,14 +93,14 @@ ul.review {
 }
 
 .em-underline {
-  color: #0000CD;
+  color: #3CB371;
   font-style: italic;
-  border-bottom:2px dotted #0000CD;
+  border-bottom:2px dotted #3CB371;
   position:relative;
 }
 
 .em-underline:after {
-  border-bottom:2px dotted #0000CD;
+  border-bottom:2px dotted #3CB371;
    content:'';
   left:0;
   position:absolute;

@@ -8,7 +8,7 @@ get '/potlucks/new' do
     erb :'/potlucks/new'
   else
     @potlucks = Potluck.all.order(start_time: :ASC)
-    @errors = ["you must be logged in to add a potluck"]
+    @errors = ["You must be logged in to add a potluck."]
     erb :index
   end
 end
@@ -23,7 +23,7 @@ get '/potlucks/:id/edit' do
   if @potluck && current_user && @potluck.organizer_id == current_user.id
     erb :"potlucks/edit"
   else
-    @errors = ["you are not authorized to perform this function"]
+    @errors = ["You are not authorized to perform this function."]
     erb :'potlucks/show'
   end
 end
