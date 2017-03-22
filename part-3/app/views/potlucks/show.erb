@@ -30,7 +30,7 @@
     <% if current_user.id == @potluck.organizer.id %>
       <p>You are the organizer of this potluck!</p>
     <% elsif signed_up %>
-      <p>You have signed up to bring <%= signed_up.dish %></p>
+      <p>You have signed up to bring <b><%= signed_up.dish %></b></p>
     <% else %>
       <form action="/potlucks/<%= @potluck.id %>/attendings" method="post">
         What dish will you bring?<br>
