@@ -1,4 +1,11 @@
 <div class="container">
+
+  <% if @errors %>
+    <% @errors.each do |error| %>
+      <p class="error"><%= error %></p>
+    <% end %>
+  <% end %>
+
   <h1><%= @potluck.name %></h1>
   <ul>
     <li>Location: <%= @potluck.location %></li><br>

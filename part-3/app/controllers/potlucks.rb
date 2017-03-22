@@ -14,7 +14,12 @@ end
 
 get '/potlucks/:id/edit' do
   @potluck = Potluck.find_by(id: params[:id])
-  erb :"potlucks/edit"
+  if @potluck && @potluck.organizer_id == current_user.id
+    erb :"potlucks/edit"
+  else
+    @errors = ["you are not authorized to perform this function"]
+    erb :'potlucks/show'
+  end
 end
 
 post '/potlucks' do
@@ -29,21 +34,17 @@ end
 
 put "/potlucks/:id" do
   @potluck = Potluck.find_by(id: params[:id])
-  if @potluck && @potluck.organizer_id == current_user.id
-    @potluck.assign_attributes(params[:potluck])
-    if @potluck.save
-      redirect "/potlucks/#{@potluck.id}"
-    else
-      @errors = @potluck.errors.full_messages
-      erb :"potlucks/edit"
-    end
+  @potluck.assign_attributes(params[:potluck])
+  if @potluck.save
+    redirect "/potlucks/#{@potluck.id}"
   else
-    redirect "/"
+    @errors = @potluck.errors.full_messages
+    erb :"potlucks/edit"
   end
 end
 
-# delete "/restaurants/:id" do
-#   @restaurant = Restaurant.find_by(id: params[:id])
-#   @restaurant.destroy
-#   redirect "/"
-# end
+delete "/potlucks/:id" do
+  @potluck = Potluck.find_by(id: params[:id])
+  @potluck.destroy
+  redirect "/"
+end
