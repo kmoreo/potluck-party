@@ -23,7 +23,7 @@
 <body>
   <% if current_user %>
     <nav class='navbar'>
-      <a style="float: right;margin-right: 50px;" href="/users/<%= current_user.id %>"><%= current_user.username %></a>
+      <a class="padded right-pipe" style="text-decoration: none;" ><%= current_user.username %></a>
       <form class="padded" style="display: inline;" method="post" action="/sessions">
         <input type="hidden" name="_method" value="delete">
         <button>Logout</button>

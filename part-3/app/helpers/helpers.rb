@@ -26,4 +26,16 @@ helpers do
     datetime.strftime("%l:%M %P")
   end
 
+  def signed_up
+    potluck = Potluck.find_by(id: params[:id])
+    if current_user.attended_potlucks
+      current_user.attended_potlucks.each do |potluck_to_be_attended|
+        if potluck_to_be_attended.potluck_id == potluck.id && potluck_to_be_attended.valid?
+          return potluck_to_be_attended
+        end
+      end
+    end
+    return false
+  end
+
 end

@@ -38,15 +38,17 @@ button {
   font-family: sans-serif;
   color:tomato;
   cursor:pointer;
+  text-decoration: underline;
 }
 
 a {
   font-family: sans-serif;
-  color: tomato ;
+  color: tomato;
+  text-decoration: underline;
 }
 
 a:link, button:link {
-  text-decoration: none;
+  text-decoration: underline;
 }
 
 a:hover, button:hover {

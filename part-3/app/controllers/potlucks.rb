@@ -15,7 +15,6 @@ end
 
 get '/potlucks/:id' do
   @potluck = Potluck.find_by(id: params[:id])
-  @attendings = Attending.find_by(potluck_id: @potluck.id)
   erb :'potlucks/show'
 end
 
@@ -42,8 +41,13 @@ end
 post '/potlucks/:id/attendings' do
   attending = current_user.attended_potlucks.new(params[:attending])
   attending.potluck_id = params[:id]
-  attending.save
-  redirect "/potlucks/#{attending.potluck_id}"
+  if attending.save
+    redirect "/potlucks/#{attending.potluck_id}"
+  else
+    @potluck = Potluck.find_by(id: params[:id])
+    @errors = attending.errors.full_messages
+    erb :'potlucks/show'
+  end
 end
 
 put "/potlucks/:id" do

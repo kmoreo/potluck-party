@@ -24,18 +24,30 @@
     <% end %>
   <% end %>
 
-  <% if current_user && current_user.id != @potluck.organizer.id%>
-    <div>
-      <h3>Attend This Potluck:</h3>
+<% if current_user %> 
+  <div>
+    <h3>Attend This Potluck:</h3>
+    <% if current_user.id == @potluck.organizer.id %>
+      <p>You are the organizer of this potluck!</p>
+    <% elsif signed_up %>
+      <p>You have signed up to bring <%= signed_up.dish %></p>
+    <% else %>
       <form action="/potlucks/<%= @potluck.id %>/attendings" method="post">
         What dish will you bring?<br>
         <input type="text" name="attending[dish]">
         <br><br>
         <input type="submit" value="Sign Up">
       </form> 
-    </div>
+    <% end %>
 
+  </div>
+<% end %>
 
+  <h3>Attendees:</h3>
+  <% if @potluck.attendings %>
+    <% @potluck.attendings.each do |attending| %>
+      <li><%= attending.guest.username %> will bring <%= attending.dish %></li>
+    <% end %>
   <% end %>
 
 </div>
