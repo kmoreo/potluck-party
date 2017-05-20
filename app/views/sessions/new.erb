@@ -1,0 +1,21 @@
+<div class="container login">
+
+  <h1>User Login</h1>
+  <% if @errors %>
+    <% @errors.each do |error| %>
+      <p class="error"><%= error %></p>
+    <% end %>
+  <% end %>
+
+  <form action="/sessions" method="post">
+    Email:<br>
+    <input type="text" name="email">
+    <br><br>
+    Password:<br>
+    <input type="password" name="password">
+    <br><br>
+    <input type="submit" value="Login">
+    <br><br>
+  </form> 
+  
+</div>

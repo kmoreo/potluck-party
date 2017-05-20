@@ -1,0 +1,23 @@
+<div class="container">
+  <h1 class="heading">Edit Potluck Details</h1>
+  <% if @errors %>
+    <% @errors.each do |error| %>
+      <p class="error"><%= error %></p>
+    <% end %>
+  <% end %>
+
+  <form action="/potlucks/<%= @potluck.id %>" method="post">
+   <input type="hidden" name="_method" value="put">
+    Name:<br>
+    <input type="text" name="potluck[name]" value="<%= @potluck.try(:name) %>">
+    <br><br>
+    Location:<br>
+    <input type="text" name="potluck[location]" value="<%= @potluck.try(:location) %>">
+    <br><br>
+    Starts At:<br>
+    <input type="text" name="potluck[start_time]" value="<%= @potluck.try(:start_time) %>">
+    <br><br>
+    <input type="submit" value="Update Potluck">
+  </form><span><a style="text-decoration: underline; display: inline;" href="/potlucks/<%= @potluck.id %>">Cancel</a></span>
+
+</div>

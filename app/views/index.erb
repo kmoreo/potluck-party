@@ -1,0 +1,18 @@
+<div class="container">
+
+  <% if @errors %>
+    <% @errors.each do |error| %>
+      <span class="em-underline"><%= error %></span>
+    <% end %>
+  <% end %>
+  <h3>Upcoming Potlucks:</h3>
+
+  <ul>
+    <% @potlucks.each do |potluck| %>
+      <li><a style="text-decoration: underline;" href='/potlucks/<%= potluck.id %>'> <%= potluck.name %></a> 
+      <p><%= event_date(potluck.start_time) %> at <%= potluck.location %></p>
+      </li>
+    <% end %>
+  </ul>
+
+ </div>

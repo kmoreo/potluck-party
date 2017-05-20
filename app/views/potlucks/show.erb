@@ -1,0 +1,53 @@
+<div class="container">
+
+  <% if @errors %>
+    <% @errors.each do |error| %>
+      <span class="em-underline"><%= error %></span><br><br>
+    <% end %>
+  <% end %>
+
+  <h1><%= @potluck.name %></h1>
+  <ul>
+    <li>Location: <%= @potluck.location %></li><br>
+    <li>Date: <%= event_date(@potluck.start_time) %></li><br>
+    <li>Time: <%= event_time(@potluck.start_time)%></li><br>
+    <li>Host: <%= @potluck.organizer.username %></li><br>
+  </ul>
+
+  <% if current_user %>
+    <% if current_user.id == @potluck.organizer_id %>
+      <a class="padded right-pipe" href='/potlucks/<%= @potluck.id %>/edit'>edit</a>
+      <form class="padded" style="display: inline;" method="post" action="/potlucks/<%= @potluck.id %>">
+        <input type="hidden" name="_method" value="delete">
+        <button>delete</button>
+      </form>
+    <% end %>
+  <% end %>
+
+<% if current_user %> 
+  <div>
+    <h3>Attend This Potluck:</h3>
+    <% if current_user.id == @potluck.organizer.id %>
+      <p>You are the organizer of this potluck!</p>
+    <% elsif signed_up %>
+      <p>You have signed up to bring <b><%= signed_up.dish %></b></p>
+    <% else %>
+      <form action="/potlucks/<%= @potluck.id %>/attendings" method="post">
+        What dish will you bring?<br>
+        <input type="text" name="attending[dish]">
+        <br><br>
+        <input type="submit" value="Sign Up">
+      </form> 
+    <% end %>
+
+  </div>
+<% end %>
+
+  <h3>Attendees:</h3>
+  <% if @potluck.attendings %>
+    <% @potluck.attendings.each do |attending| %>
+      <li><%= attending.guest.username %> will bring <%= attending.dish %></li>
+    <% end %>
+  <% end %>
+
+</div>
